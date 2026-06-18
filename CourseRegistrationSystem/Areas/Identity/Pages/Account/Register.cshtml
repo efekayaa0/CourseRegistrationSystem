@@ -1,0 +1,68 @@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-card-header">
+            <div class="mb-3">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="rgba(255,255,255,.12)"/>
+                    <path d="M20 10a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 10 2.67 10 6v2H10v-2c0-3.33 4.67-6 10-6z" fill="white"/>
+                    <circle cx="29" cy="14" r="6" fill="#2563eb" stroke="white" stroke-width="2"/>
+                    <path d="M29 11v6M26 14h6" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <h2>Hesap Oluşturun</h2>
+            <p>Ücretsiz hesabınızı dakikalar içinde açın</p>
+        </div>
+
+        <div class="auth-card-body">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <div asp-validation-summary="ModelOnly"></div>
+                </div>
+            }
+
+            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label">E-posta Adresi</label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="ornek@eposta.com" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label">Şifre</label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="En az 6 karakter" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.ConfirmPassword" class="form-label">Şifre Tekrar</label>
+                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Şifrenizi tekrar girin" />
+                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Kayıt Ol
+                </button>
+            </form>
+
+            <div class="auth-divider">veya</div>
+
+            <div class="text-center" style="font-size:.875rem;">
+                <span class="text-muted">Zaten hesabınız var mı?</span>
+                <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="fw-semibold ms-1">
+                    Giriş Yapın
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

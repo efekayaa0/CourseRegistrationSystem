@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CourseReg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CourseRegistrationSystem.styles.css" asp-append-version="true" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- ===== NAVBAR ===== -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light site-navbar sticky-top">
+            <div class="container">
+                <!-- Marka / Logo -->
+                <a class="navbar-brand d-flex align-items-center gap-2" asp-area="" asp-controller="Home" asp-action="Index">
+                    <span class="navbar-icon" aria-hidden="true">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="30" height="30" rx="8" fill="#7c3aed"/>
+                            <path d="M8 10h14M8 15h10M8 20h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span class="navbar-brand-text">CourseReg</span>
+                </a>
+
+                <!-- Hamburger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Linkler + Auth -->
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== ANA İÇERİK ===== -->
+    <main role="main" class="flex-grow-1">
+        @RenderBody()
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4 footer-main">
+                <!-- Marka sütunu -->
+                <div class="col-md-5 col-lg-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <svg width="26" height="26" viewBox="0 0 30 30" fill="none">
+                            <rect width="30" height="30" rx="8" fill="#7c3aed"/>
+                            <path d="M8 10h14M8 15h10M8 20h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span class="footer-brand-text">CourseReg</span>
+                    </div>
+                    <p class="footer-desc">
+                        Modern ve kullanıcı dostu ders kayıt ve program yönetim sistemi.
+                        Akademik sürecinizi kolayca takip edin.
+                    </p>
+                </div>
+
+                <!-- Navigasyon -->
+                <div class="col-6 col-md-3 col-lg-2 offset-lg-2">
+                    <h6 class="footer-heading">Navigasyon</h6>
+                    <ul class="footer-links">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a></li>
+                    </ul>
+                </div>
+
+                <!-- Hesap -->
+                <div class="col-6 col-md-3 col-lg-2">
+                    <h6 class="footer-heading">Hesap</h6>
+                    <ul class="footer-links">
+                        <li><a asp-area="Identity" asp-page="/Account/Login">Giriş Yap</a></li>
+                        <li><a asp-area="Identity" asp-page="/Account/Register">Kayıt Ol</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Telif satırı -->
+            <div class="footer-bottom">
+                <span>&copy; @DateTime.Now.Year CourseReg. Tüm hakları saklıdır.</span>
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik Politikası</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

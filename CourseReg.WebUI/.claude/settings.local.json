@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/efe/OneDrive/Masa�st�/yedekleme/CourseRegistrationSystem/CourseRegistrationSystem/**)",
+      "Read(//c/Users/efe/OneDrive/Masaüstü/yedekleme/CourseRegistrationSystem/**)"
+    ]
+  }
+}

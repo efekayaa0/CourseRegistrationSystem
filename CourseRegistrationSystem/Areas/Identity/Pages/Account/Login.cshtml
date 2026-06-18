@@ -1,0 +1,73 @@
+@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-card-header">
+            <div class="mb-3">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="40" height="40" rx="10" fill="rgba(255,255,255,.12)"/>
+                    <path d="M20 10a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 10 2.67 10 6v2H10v-2c0-3.33 4.67-6 10-6z" fill="white"/>
+                </svg>
+            </div>
+            <h2>Tekrar Hoş Geldiniz</h2>
+            <p>Hesabınıza giriş yapın</p>
+        </div>
+
+        <div class="auth-card-body">
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <div asp-validation-summary="ModelOnly"></div>
+                </div>
+            }
+
+            <form id="account" method="post">
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label">E-posta Adresi</label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="ornek@eposta.com" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <label asp-for="Input.Password" class="form-label mb-0">Şifre</label>
+                        <a asp-page="./ForgotPassword" class="small" style="font-size:.8rem;">Şifremi unuttum</a>
+                    </div>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="••••••••" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        <label class="form-check-label small text-muted" asp-for="Input.RememberMe">
+                            Beni hatırla
+                        </label>
+                    </div>
+                </div>
+
+                <input type="hidden" name="ReturnUrl" value="@Model.ReturnUrl" />
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                    Giriş Yap
+                </button>
+            </form>
+
+            <div class="auth-divider">veya</div>
+
+            <div class="text-center" style="font-size:.875rem;">
+                <span class="text-muted">Hesabınız yok mu?</span>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="fw-semibold ms-1">
+                    Kayıt Olun
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

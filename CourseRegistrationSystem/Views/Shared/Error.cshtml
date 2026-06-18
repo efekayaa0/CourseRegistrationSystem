@@ -1,0 +1,40 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Bir Hata Oluştu";
+}
+
+<div class="container py-5" style="max-width: 600px;">
+    <div class="text-center mb-4">
+        <div class="mb-3" style="font-size:4rem; line-height:1;">⚠️</div>
+        <h1 class="fw-bold" style="color: var(--danger);">Bir Hata Oluştu</h1>
+        <p class="text-muted">İsteğiniz işlenirken beklenmeyen bir sorunla karşılaşıldı.</p>
+    </div>
+
+    @if (Model.ShowRequestId)
+    {
+        <div class="alert alert-danger d-flex align-items-center gap-2" role="alert">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div>
+                <strong>İstek Kimliği:</strong>
+                <code style="font-size:.85rem;">@Model.RequestId</code>
+            </div>
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="fw-bold mb-2">Geliştirici Notu</h5>
+            <p class="text-muted mb-0" style="font-size:.9rem;">
+                Daha ayrıntılı hata bilgisi görmek için <code>ASPNETCORE_ENVIRONMENT</code>
+                değişkenini <code>Development</code> olarak ayarlayıp uygulamayı yeniden başlatın.
+                Canlı ortamlarda bu ayar kapalı tutulmalıdır.
+            </p>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-primary px-4">
+            Ana Sayfaya Dön
+        </a>
+    </div>
+</div>
